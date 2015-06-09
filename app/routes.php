@@ -19,6 +19,7 @@ Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
+Route::model('job', 'Job');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -103,9 +104,16 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
+# Contact Us Static Page
+Route::get('jobs', 'JobsController@index');
+Route::get('jobs/{id}', 'JobsController@show');
+
+
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
+
+
 
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
