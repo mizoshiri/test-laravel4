@@ -1,3 +1,21 @@
+## Tasks
+
+This is an exercise to demonstrate how you think about code, database architecture and attention to detail.
+Using some or all of:
+- PHP
+- MySQL
+- jQuery
+- Your choice of other tools
+
+Create a basic job application page (click apply now). This form should have the required fields first name, last name, email address and home address including country (only, no other fields needed). Once the form is submitted the inputted data should be outputted on a page to the user, be sure to store this data somewhere.
+
+Add an "Apply with X" button to the page and choose between LinkedIn or Facebook to integrate with. Clicking this button should allow the user to apply/prefill the form with their data from the selected social network. API Documentation can be found at https://developer.linkedin.com/ and https://developers.facebook.com/
+
+More detail
+- https://developers.expr3ss.com/exercise.html
+
+
+
 #Laravel 4 Bootstrap Starter Site [![ProjectStatus](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](http://stillmaintained.com/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
 [![Build Status](https://api.travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site.png)](https://travis-ci.org/andrewelkins/Laravel-4-Bootstrap-Starter-Site)
 

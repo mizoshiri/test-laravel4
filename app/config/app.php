@@ -67,7 +67,7 @@ return array(
 
 	'key' => 'YourSecretKey!!!',
 
-	'cipher' => MCRYPT_RIJNDAEL_128,	
+	'cipher' => MCRYPT_RIJNDAEL_128,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -108,16 +108,18 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
-		
+
         /* Additional Providers */
         'Zizaco\Confide\ServiceProvider', // Confide Provider
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'Bllim\Datatables\DatatablesServiceProvider', // Datatables
 
         /* Uncomment for use in development */
-//        'Way\Generators\GeneratorsServiceProvider', // Generators
+        'Way\Generators\GeneratorsServiceProvider', // Generators
 //        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 
+				// Debuger
+				'Barryvdh\Debugbar\ServiceProvider',
     ),
 
     /*
@@ -184,6 +186,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
         /* Additional Aliases */
         'Confide'         => 'Zizaco\Confide\Facade', // Confide Alias
