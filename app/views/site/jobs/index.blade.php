@@ -21,6 +21,7 @@
 				</p>
 			</div>
 		</div>
+		<p><a class="btn btn-mini btn-default" href="jobs/{{{ $job->id }}}">More detail</a> <a class="btn btn-mini btn-primary" href="applies/{{{ $job->id }}}/create">Apply</a></p>
 	</div>
 </div>
 

@@ -14,12 +14,13 @@
 
 {{-- Content --}}
 @section('content')
-<h3>{{ $job->title }}</h3>
+<h1>{{ $job->title }}</h1>
 
 <p>{{ $job->body }}</p>
 
 <div>
 	<span class="badge badge-info">jobed {{{ $job->created_at }}}</span>
+	<a class="btn btn-mini btn-primary" href="/applies/{{{ $job->id }}}/create">Apply</a>
 </div>
 
 <hr />

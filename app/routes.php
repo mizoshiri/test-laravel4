@@ -19,7 +19,7 @@ Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
-Route::model('job', 'Job');
+#Route::model('job', 'Job');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -104,9 +104,43 @@ Route::get('contact-us', function()
     return View::make('site/contact-us');
 });
 
-# Contact Us Static Page
-Route::get('jobs', 'JobsController@index');
-Route::get('jobs/{id}', 'JobsController@show');
+# Jobs
+Route::resource('jobs', 'JobsController');
+#Route::get('jobs/{id}', 'JobsController@show');
+Route::resource('applies', 'AppliesController');
+
+
+Route::group(['prefix' => 'applies'], function() {
+	Route::get('', [
+		'as' => 'applies.index',
+		'uses' => 'AppliesController@index',
+	]);
+
+	Route::get('{id}/create', [
+		'as' => 'applies.create',
+		'uses' => 'AppliesController@create',
+		// MEMO ルート単位のフィルタは’before', 'after'で指定する。
+		// MEMO filter.php内の'todos.exists'フィルタ定義を有効にすること。
+//		'before' => 'todos.exists',
+	]);
+// 	Route::put('{id}/title', [
+// 		'as' => 'todos.update-title',
+// 		'uses' => 'TodosController@ajaxUpdateTitle',
+// //		'before' => 'todos.exists',
+// 	]);
+//
+// 	Route::post('{id}/delete', [
+// 		'as' => 'todos.delete',
+// 		'uses' => 'TodosController@delete',
+// //		'before' => 'todos.exists',
+// 	]);
+//
+// 	Route::post('{id}/restore', [
+// 		'as' => 'todos.restore',
+// 		'uses' => 'TodosController@restore',
+// //		'before' => 'todos.exists',
+// 	]);
+});
 
 
 # Posts - Second to last set, match slug
@@ -114,6 +148,5 @@ Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
 
 
-
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', array('before' => 'detectLang','uses' => 'JobsController@index'));

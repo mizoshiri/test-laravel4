@@ -12,7 +12,10 @@ class DatabaseSeeder extends Seeder {
         // $this->call('CommentsTableSeeder');
         // $this->call('RolesTableSeeder');
         // $this->call('PermissionsTableSeeder');
-        $this->call('JobsTableSeeder');
+        //$this->call('JobsTableSeeder');
+        #$this->call('CountriesTableSeeder');
+        // $this->call('CountriesSeeder');
+        // $this->command->info('Seeded the countries!');
     }
 
 }

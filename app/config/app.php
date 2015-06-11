@@ -120,6 +120,8 @@ return array(
 
 				// Debuger
 				'Barryvdh\Debugbar\ServiceProvider',
+				// Country
+    		'Webpatser\Countries\CountriesServiceProvider',
     ),
 
     /*
@@ -187,6 +189,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+    'Countries' => 'Webpatser\Countries\CountriesFacade',
 
         /* Additional Aliases */
         'Confide'         => 'Zizaco\Confide\Facade', // Confide Alias

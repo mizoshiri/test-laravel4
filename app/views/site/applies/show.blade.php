@@ -1,0 +1,1 @@
+/var/www/html/sazae/sazae/laravel4/app/views/applies/show.blade.php
