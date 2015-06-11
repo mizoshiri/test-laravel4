@@ -127,22 +127,21 @@ Route::get('login/fb/{id}', function($id) {
   return Redirect::to($facebook->getLoginUrl($params));
 });
 
+// Facebook callback and save Facebook information to session
 Route::get('login/fb/callback/{id}', function($id) {
     $code = Input::get('code');
-    if (strlen($code) == 0) return Redirect::to('/')->with('message', 'Facebookとの接続でエラーが発生しました。');
+    if (strlen($code) == 0) return Redirect::to('/')->with('message', 'Failed to connect to Facebook.');
 
     $facebook = new Facebook(Config::get('facebook'));
     $uid = $facebook->getUser();
-    if ($uid == 0) return Redirect::to('/')->with('message', 'エラーが発生しました。');
+    if ($uid == 0) return Redirect::to('/')->with('message', 'Error with uid');
     Session::put('me', $facebook->api('/me'));
-    return Redirect::to('/applies/'.$id.'/create')->with('message', 'Facebookログインしました');
+    return Redirect::to('/applies/'.$id.'/create')->with('message', 'Connected to Facebook.');
 });
-
 
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
-
 
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'JobsController@index'));
