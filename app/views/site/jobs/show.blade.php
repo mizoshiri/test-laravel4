@@ -20,6 +20,7 @@
 
 <div>
 	<span class="badge badge-info">jobed {{{ $job->created_at }}}</span>
+	<a onClick="history.go(-1);return true;"  class="btn btn-default">Back</a>
 	<a class="btn btn-mini btn-primary" href="/applies/{{{ $job->id }}}/create">Apply</a>
 </div>
 

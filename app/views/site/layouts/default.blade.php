@@ -47,6 +47,7 @@
 		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}}">
 		<link rel="apple-touch-icon-precomposed" href="{{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}}">
 		<link rel="shortcut icon" href="{{{ asset('assets/ico/favicon.png') }}}">
+		{{ HTML::style(asset('assets/css/custom.css')) }}
 	</head>
 
 	<body>
@@ -104,11 +105,16 @@
 		<!-- ./wrap -->
 
 
-	    <div id="footer">
-	      <div class="container">
-	        <p class="muted credit">Copy right 2015</p>
-	      </div>
-	    </div>
+		<footer class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<span class="pull-left">
+						Copyright <i class="glyphicon glyphicon-copyright-mark"></i> <a href="">Sazae.</a>
+					</span>
+				</div>
+			</div>
+		</footer>
+
 
 		<!-- Javascripts
 		================================================== -->

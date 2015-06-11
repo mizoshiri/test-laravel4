@@ -12,50 +12,45 @@
   <p>{{ $job->body }}</p>
 
   <h2>Application</h2>
-  {{ Form::open(array('url' => '')) }}
-    {{ Form::token()}}
-    {{ Form::label('email', 'Email')}}
-    {{Form::text('email', '');}}
-  {{ Form::close() }}
-  <form class="form-horizontal" method="post" action="" autocomplete="off">
-    <!-- CSRF Token -->
-    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-    <!-- ./ csrf token -->
+
+  <a class="btn btn-block btn-social btn-facebook" href="/login/fb/{{ $job->id }}"><i class="fa fa-facebook"></i> Sign in with Facebook</a>
+
+  {{Form::open(array('url' => url('applies/'.$job->id.'/create'), 'class'=>'form-horizontal')) }}
+
+    {{ Form::token() }}
     <div class="form-group {{{ $errors->has('first_name') ? 'error' : '' }}}">
-      <label class="col-md-3 control-label" for="first_name">First Name</label>
-        <div class="col-md-5">
-        <input class="form-control" type="text" name="first_name" id="first_name" value="{{{ Input::old('first_name') }}}" />
-        {{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
-        </div>
+      {{ Form::label('first_name', 'First Name', array('class' => 'col-md-3 control-label')) }}
+      <div class="col-md-5">
+        {{ Form::text('first_name', $me['first_name'], array('class' => 'form-control')) }}
+        {{ $errors->first('first_name', '<span class="text-danger">:message</span>') }}
+      </div>
     </div>
     <div class="form-group {{{ $errors->has('last_name') ? 'error' : '' }}}">
-      <label class="col-md-3 control-label" for="last_name">Last Name</label>
-        <div class="col-md-5">
-        <input class="form-control" type="text" name="last_name" id="last_name" value="{{{ Input::old('last_name') }}}" />
-        {{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
-        </div>
+      {{ Form::label('last_name', 'Last Name', array('class' => 'col-md-3 control-label')) }}
+      <div class="col-md-5">
+      {{ Form::text('last_name', $me['last_name'], array('class' => 'form-control')) }}
+      {{ $errors->first('last_name', '<span class="text-danger">:message</span>') }}
+      </div>
     </div>
     <div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
-      <label class="col-md-3 control-label" for="email">Email</label>
-        <div class="col-md-5">
-        <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email') }}}" />
-        {{ $errors->first('email', '<span class="help-inline">:message</span>') }}
-        </div>
+      {{ Form::label('email', 'Email', array('class' => 'col-md-3 control-label')) }}
+      <div class="col-md-5">
+      {{ Form::text('email', $me['email'], array('class' => 'form-control')) }}
+      {{ $errors->first('email', '<span class="text-danger">:message</span>') }}
+      </div>
     </div>
-
     <div class="form-group {{{ $errors->has('country_id') ? 'error' : '' }}}">
-      <label class="col-md-3 control-label" for="country_id">Country</label>
-        <div class="col-md-5">{{Form::select('coutry_id', $countries)}}
-        </div>
+      {{ Form::label('country_id', 'Country', array('class' => 'col-md-3 control-label')) }}
+      <div class="col-md-5">{{Form::select('country_id', $countries)}}</div>
     </div>
     <div class="form-group {{{ $errors->has('address') ? 'error' : '' }}}">
-      <label class="col-md-3 control-label" for="address">Address</label>
-        <div class="col-md-5">
-        <input class="form-control" type="text" name="address" id="address" value="{{{ Input::old('address') }}}" />
-        {{ $errors->first('address', '<span class="help-inline">:message</span>') }}
-        </div>
+      {{ Form::label('address', 'Address', array('class' => 'col-md-3 control-label')) }}
+      <div class="col-md-5">
+      {{ Form::text('address', '', array('class' => 'form-control')) }}
+      {{ $errors->first('address', '<span class="text-danger">:message</span>') }}
+      </div>
     </div>
-        <!-- Form Actions -->
+
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
         <input type="button" value="Back" onClick="history.go(-1);return true;"  class="btn btn-default">
@@ -63,6 +58,6 @@
         <button type="submit" class="btn btn-success">Create</button>
       </div>
     </div>
-  </form>
+  {{ Form::close() }}
 
 @stop

@@ -111,35 +111,31 @@ Route::resource('applies', 'AppliesController');
 
 
 Route::group(['prefix' => 'applies'], function() {
-	Route::get('', [
-		'as' => 'applies.index',
-		'uses' => 'AppliesController@index',
-	]);
+	Route::get('', 'AppliesController@index');
+	Route::get('{id}/create', 'AppliesController@create');
+  Route::post('{id}/create', 'AppliesController@postCreate');
+  Route::get('{id}/update', 'AppliesController@update');
+  Route::post('{id}/update', 'AppliesController@update');
+});
 
-	Route::get('{id}/create', [
-		'as' => 'applies.create',
-		'uses' => 'AppliesController@create',
-		// MEMO ルート単位のフィルタは’before', 'after'で指定する。
-		// MEMO filter.php内の'todos.exists'フィルタ定義を有効にすること。
-//		'before' => 'todos.exists',
-	]);
-// 	Route::put('{id}/title', [
-// 		'as' => 'todos.update-title',
-// 		'uses' => 'TodosController@ajaxUpdateTitle',
-// //		'before' => 'todos.exists',
-// 	]);
-//
-// 	Route::post('{id}/delete', [
-// 		'as' => 'todos.delete',
-// 		'uses' => 'TodosController@delete',
-// //		'before' => 'todos.exists',
-// 	]);
-//
-// 	Route::post('{id}/restore', [
-// 		'as' => 'todos.restore',
-// 		'uses' => 'TodosController@restore',
-// //		'before' => 'todos.exists',
-// 	]);
+Route::get('login/fb/{id}', function($id) {
+  $facebook = new Facebook(Config::get('facebook'));
+  $params = array(
+      'redirect_uri' => url('/login/fb/callback/'.$id),
+      'scope' => 'email',
+  );
+  return Redirect::to($facebook->getLoginUrl($params));
+});
+
+Route::get('login/fb/callback/{id}', function($id) {
+    $code = Input::get('code');
+    if (strlen($code) == 0) return Redirect::to('/')->with('message', 'Facebookとの接続でエラーが発生しました。');
+
+    $facebook = new Facebook(Config::get('facebook'));
+    $uid = $facebook->getUser();
+    if ($uid == 0) return Redirect::to('/')->with('message', 'エラーが発生しました。');
+    Session::put('me', $facebook->api('/me'));
+    return Redirect::to('/applies/'.$id.'/create')->with('message', 'Facebookログインしました');
 });
 
 
